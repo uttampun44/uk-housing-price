@@ -7,4 +7,5 @@ def housing_prices():
 
     print("Shape:",df.shape)
     print("Columns:",df.columns)
+    print(df.head())
     return df
