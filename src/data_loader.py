@@ -1,11 +1,7 @@
 import pandas as pd
 
-
-def housing_prices():
+# Load the housing price data from the CSV file
+def housing_prices_data():
 
     df = pd.read_csv("data/raw/UK-HPI-full-file-2024-08.csv")
-
-    print("Shape:",df.shape)
-    print("Columns:",df.columns)
-    print(df.head())
     return df

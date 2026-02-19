@@ -1,10 +1,17 @@
 # importing files from src folder
 
-from src.data_loader import housing_prices
-from src.analysis import analysis_data
-# from src.visualization import visualize_data
+from src.data_loader import housing_prices_data
+from src.analysis import analysis_data, filter_regions, get_yearly_average_price, calculate_growth
+from src.visualization import plot_regional_prices, plot_house_types
+from src.prediction import predict_future_prices
 
-df = housing_prices()
+
+df = housing_prices_data()
 results = analysis_data(df)
-# print(results.head())
-# plot_regional(results)
+results = filter_regions(results)
+df_yearly = get_yearly_average_price(results)
+df_yearly = calculate_growth(df_yearly)
+
+plot_regional_prices(df_yearly)
+plot_house_types(df)
+predict_future_prices(df_yearly)
