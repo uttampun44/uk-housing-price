@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  housing-analysis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    container_name: uk-housing-price-analysis
+    
+    # Mount volumes for live code updates
+    volumes:
+      # Mount source code - changes in VSCode instantly reflected
+      - .:/app
+      # Mount outputs to access results
+      - ./outputs:/app/outputs
+      # Keep Python cache persistent
+      - /app/__pycache__
+    
+    # Working directory inside container
+    working_dir: /app
+    
+    # Keep container running
+    stdin_open: true
+    tty: true
+    
+    # Environment variables
+    environment:
+      - PYTHONUNBUFFERED=1  # Unbuffered output for live logs
+      - PYTHONDONTWRITEBYTECODE=1  # Don't create .pyc files
+    
+    # Default command (can be overridden)
+    command: python main.py
+    
+    # For interactive use, uncomment to keep shell open:
+    # command: /bin/bash
